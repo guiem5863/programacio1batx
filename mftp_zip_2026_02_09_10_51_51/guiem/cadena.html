@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script></head>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;700&family=Merriweather&display=swap" rel="stylesheet"> 
+    
+<style>
+    
+    @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+    img {margin:0px;}
+          @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+
+    h1 {
+      font-family: 'Berkshire Swash';
+      font-size: 40pt;
+      text-align:center;
+      padding:8px;
+    }
+
+    titol2 {
+        font-family: font-family: 'Merriweather', serif;
+        font-size: 14pt;
+        text-align:center;
+        padding:8px;
+    }
+
+    p,form-check-label {
+      font-family: font-family: 'Merriweather', serif;
+      font-size: 14pt;
+      text-align:center;
+      
+      padding:8px;
+    }
+
+    @media screen and (max-width:720px){
+        .titol {
+            text-shadow:0px 0px 0 #444;
+            font-size: 15pt;
+        }
+        .titol2 {
+            text-shadow:0px 0px 0 #444;
+            font-size: 10pt;
+
+        }
+        
+    .w3-display-topmiddle {
+        left:0%;
+        transform: translate(0%,0%);
+        padding-top:50px;
+        padding-left:15px;
+        padding-right:15px;
+        
+        }
+}
+</style>   
+    
+    
+<body class="container-fluid">
+    <div style="color:w3-black;">
+        <p>PÀGINA PRINCIPAL</p>
+    </div>
+
+    <div style="color:CadetBlue;">             
+        <a href="http://gimnesia.net/dev/2025/guiem/" class="w3-bar-item w3-button">Pàgina Principal</a>
+    </div>
+    
+    <div class="w3-container w3-center">
+        <h1 class="titol">Les Cadenes de Gimnèsia</h1>
+        <h2>Pere Antoni</h2>
+    </div>
+    <div class="row w3-container">
+        <div class="w3-col l4">
+        </div>
+        
+        <button class="btn btn-primary btn-block w3-col l4" id="inicia">Juga a endevinar i puntuar</button>
+        <div class="w3-col l4">
+        </div>
+        
+    
+    
+    
+    </div>
+  </div>
+  <p>Abaix la llista desordenada:</p>
+  <p id="llista"></p>
+  <p>Abaix la cadena:</p>
+  <p id="especies"></p>
+
+<div class="row w3-container">
+    <div class="w3-col l4">
+
+    </div>
+    <div class="w3-col l4 s12">      
+        <img id="img1" class="img-fluid max-width" src="">
+    </div>
+    <div class="w3-col l4">
+
+    </div>
+    <div class="w3-col l4">
+    </div>
+    
+    <div class="w3-col l4">
+
+    </div>
+</div>
+    
+</div>
+    
+    
+
+</body>
+<script>
+//GLOBAL VARIABLE
+var especies =[];
+let aleatoris = [];
+let especiesRandom ="";
+//var codiPartida;
+
+console.log("Benvinguts a l'aplicació");
+$("#inicia").click();
+
+$(document).ready(function(){
+  $("#inicia").click(function(){
+    $.get("http://www.gimnesia.net/api/especie/read.php",
+    {},
+    function(data,status){
+        let carta=0;
+        especies = JSON.parse(JSON.stringify(data));
+        aleatoris=llistaAleatoris();
+        document.getElementById("llista").innerHTML=aleatoris;
+        especiesRandom = "";
+        /*for (e in aleatoris){
+            carta=aleatoris[e];
+            especiesRandom += ( e + "-->" + aleatoris[e] + ", " + especies.records[carta].nom + especies.records[carta].nivell + "<br>"  );
+        }*/
+    
+        for (e in aleatoris){
+            carta=aleatoris[e];
+            if (especies.records[carta].nivell==0){
+                especiesRandom += ( e + "-->" + aleatoris[e] + ", " + especies.records[carta].nom + especies.records[carta].nivell + "<br>"  );
+                //+ "-" + carta + " Nom: " + especies.records[carta].nom + " - nivell: " + especies.records[carta].nivell +
+                //" - habitats: " + especies.records[carta].h1 + " - " + especies.records[carta].h2 + "-" + especies.records[carta].h3 + "<br>"); 
+                
+                resultat[0]=especies.records[carta];
+                alert(resultat[0]);
+                break;
+            }
+            //  
+          }
+        document.getElementById("especies").innerHTML=especiesRandom;
+        
+        //punts=0;
+        //console.log("Carregat:" + JSON.stringify(especies));
+        //creaPartida();
+        
+        //mostrarResultats();
+        //volta();
+
+        //document.getElementById("nom").innerHTML="Aqui tocaria sortir " + especies.records.length + especies.records[0].nom;
+    });
+  });
+});
+
+/*
+function volta() {
+    aleatoris=llistaAleatoris();
+    return aleatoris;  
+}
+
+function anotaPuntuacio(){
+    document.getElementById("puntuacio").innerHTML="Puntuació : " + punts;
+    //versio 2: 
+}
+
+function posaNom(){
+    //triam el numero que serà el correcte.
+    correcte = Math.floor((Math.random() * nombre) + 1) - 1;
+    let n= aleatoris[correcte] - 1;
+    document.getElementById("r").innerHTML="Puntuació : " + punts;
+    document.getElementById("nom").innerHTML=especies.records[n].nom;
+}
+
+function posaFoto(){
+    //triam el numero que serà el correcte.
+    correcte = Math.floor((Math.random() * nombre));
+    //console.log("PosaFoto()correcte:" + correcte);
+    let n= aleatoris[correcte] +1 ;
+    //console.log("PosaFoto()n:" + n);
+    document.getElementById("img1").src="http://aula.gimnesia.net/fotos/" + n + ".jpg";
+}
+
+function posaBotons(){
+  let i=0;
+  let tipuscombinat=false;
+  if(tipusJoc==3){tipuscombinat=true; tipusJoc=Math.floor((Math.random() * 3));}
+  for(let i =0;i<nombre;i++){
+    if(tipusJoc==0){document.getElementById("boto" + i).innerHTML=especies.records[aleatoris[i]].nom;} 
+    if(tipusJoc==1){document.getElementById("boto" + i).innerHTML=especies.records[aleatoris[i]].cientific;} 
+    if(tipusJoc==2){document.getElementById("boto" + i).innerHTML=especies.records[aleatoris[i]].info;} 
+  }
+  if(tipuscombinat){tipusJoc=3;}
+ 
+}
+    
+function pitjat(q){
+    if (correcte==q){punts++;} else {punts--;}
+    volta();
+}
+*/
+function llistaAleatoris(){
+  let llista=[];
+  let n=0;
+  while (llista.length<80){
+    //generam el nombre
+    n = Math.floor((Math.random() * 80));
+    //comprovam que no és dins la llista
+    if (llista.indexOf(n)==-1){llista.push(n);} 
+  }
+  return llista;  
+}
+
+function agafaEspecies(){
+
+}
+
+function creaPartida(){
+    $.post("http://www.gimnesia.net/api/partida/create.php",
+        {
+            nom: "Donald Duck",
+            email: "Duckburg"
+        },
+        function(data, status){
+            console.log("Data: " + data + "\nStatus: " + status);
+  });    
+
+}
+
+function mostrarResultats(){
+    $.get("http://www.gimnesia.net/api/partida/read.php", function(data, status){
+      console.log("Data: " + data + "\nStatus: " + status);
+    });
+
+}
+
+
+</script>
+</html>

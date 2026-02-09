@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+            .numero {
+                color:red
+            }
+        </style>
+    </head>
+    <body>
+        <div style="color:w3-black;">
+            <p>PAGINA PRINCIPAL</p>
+        </div>
+        <div style="color:CadetBlue;">             
+            <a href="http://gimnesia.net/dev/2025/guiem/" class="w3-bar-item w3-button">Pagina Principal</a>
+        </div>
+        <h2>Calculadora Guiem</h2>
+        <p>Esquelet sense identificar ni esdeveniments</p>
+        <table style="width:100%">
+            <tr>
+                <th>
+                    <p id="operador1"></p>
+                    <p id="operador2"></p>
+                    <p>entrada:</p>
+                    <p id="entrada"></p>
+                    <p>operadors:</p>
+                    <p id="operadors"></p>
+                </th>
+            </tr>
+        </table>
+        <table style="width:100%">
+            <tr>
+                <th style="width:25%" class="numero" onclick="f(this)" id="id1"><button>1</button></th>
+                <th style="width:25%" class="numero" onclick="f(this)"><button>2</button></th> 
+                <th style="width:25%" class="numero" onclick="f(this)"><button>3</button></th>
+                <th style="width:25%" class="operacio" onclick="opera(this)"><button>+</button></th>
+            </tr>
+            <tr>
+                <th style="width:25%" onclick="f(this)"><button>4</button></th>
+                <th style="width:25%" onclick="f(this)"><button>5</button></th> 
+                <th style="width:25%" onclick="f(this)"><button>6</button></th>
+                <th style="width:25%" class="operacio" onclick="resta(this)"><button>-</button></th>
+            </tr>
+            <tr>
+                <th style="width:25%" onclick="f(this)"><button>7</button></th>
+                <th style="width:25%" onclick="f(this)"><button>8</button></th> 
+                <th style="width:25%" onclick="f(this)"><button>9</button></th>
+                <th style="width:25%" class="operacio" onclick="multi(this)"><button>*</button></th>
+            </tr>
+            <tr>
+                <th style="width:25%"> <button>%</button> </th>
+                <th style="width:25%" onclick="f(this)"><button>0</button></th> 
+                <th style="width:25%"><button>#</button></th>
+                <th style="width:25%" onclick="igual(this)"><button>=</button></th>
+            </tr>
+            
+        </table>
+
+    </body>
+    <script>
+        let operador1 = 0
+        let operador2 = 0
+        let posicio = 0
+        let operadors = []
+        let r = 0
+        let pos = 0
+
+        function f1(){
+            alert("hi1")
+            console.log("som a la consola")
+        }
+        function f2(){
+            alert("hi2")
+        }
+
+        function f(el){
+            //2.10.2025. Pere 
+            //afegir a resultat
+            /*console.log(el.textContent)*/
+            
+            const operadors = []
+            //operadors.push(operadors);
+            operador1 = operador1
+            console.log(operador1)
+
+            document.getElementById("entrada").innerHTML += el.textContent
+        }
+
+        function opera(el){
+            operadors.push(document.getElementById("entrada").innerHTML)
+            document.getElementById("entrada").innerHTML = ""
+            document.getElementById("operadors").innerHTML = operadors
+
+            if (posicio==0){
+                document.getElementById("entrada").innerHTML
+            }
+            if (posicio==1){
+                operador2 = document.getElementById("entrada").innerHTML
+            }
+            //document.getElementById("operadors").innerHTML = entrada
+            document.getElementById("operador1").innerHTML = "op1: " + operador1
+            document.getElementById("operador2").innerHTML = "op2: " + operador2
+            document.getElementById("entrada").innerHTML = ""
+
+            if (posicio==0) {posicio=1} else {posicio=0}
+            //alert("operador1 val " + operador1)
+        }
+
+        function igual(el){
+            
+            document.getElementById("entrada").innerHTML = "resultat"
+            document.getElementById("entrada").innerHTML = parseInt(operador1) + parseInt(operador2)
+
+            //alert("operador1 val " + operador1)
+            
+        }
+
+
+    </script>
+</html>

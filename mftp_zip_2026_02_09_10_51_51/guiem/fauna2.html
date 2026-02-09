@@ -1,0 +1,139 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div style="color:w3-black;">
+            <p>PAGINA PRINCIPAL</p>
+        </div>
+        <div style="color:CadetBlue;">             
+            <a href="http://gimnesia.net/dev/2025/guiem/" class="w3-bar-item w3-button">Pagina Principal</a>
+        </div>
+        
+        <h1>Exercici 1</h1>
+
+        <input type="number" id="numero"><br><br>
+        <button onclick="mostra()">pitja aqui</button>
+        <img src="" id="imatge">
+
+
+        <h1>Exercici 2</h1>
+        <h2>The Math.random() Method</h2>
+
+        <p id="demo3"></p>
+
+        <h1>Exercici 3</h1>
+        <h2>The Math.random() Method</h2>
+
+        <p id="demo4"></p>
+
+        <button onclick="mostra2()">Fotos</button>
+
+        <p id="demo4"></p>
+
+        <img id="foto1"><img id="foto2"><img id="foto3"><img id="foto4"><img id="foto5"><img id="foto6"><img id="foto7"><img id="foto8"><img id="foto9">
+        <img id="foto10"><img id="foto11"><img id="foto12"><img id="foto13"><img id="foto14"><img id="foto15"><img id="foto16"><img id="foto17"><img id="foto18"><img id="foto19">
+        <img id="foto20"><img id="foto21"><img id="foto22"><img id="foto23"><img id="foto24"><img id="foto25"><img id="foto26"><img id="foto27"><img id="foto28"><img id="foto29">
+        <img id="foto30"><img id="foto31"><img id="foto32"><img id="foto33"><img id="foto34"><img id="foto35"><img id="foto36"><img id="foto37"><img id="foto38"><img id="foto39">
+        <img id="foto40"><img id="foto41"><img id="foto42"><img id="foto43"><img id="foto44"><img id="foto45"><img id="foto46"><img id="foto47"><img id="foto48"><img id="foto49">
+        <img id="foto50"><img id="foto51"><img id="foto52"><img id="foto53"><img id="foto54"><img id="foto55"><img id="foto56"><img id="foto57"><img id="foto58"><img id="foto59">
+        <img id="foto60"><img id="foto61"><img id="foto62"><img id="foto63"><img id="foto64"><img id="foto65"><img id="foto66"><img id="foto67"><img id="foto68"><img id="foto69">
+        <img id="foto70"><img id="foto71"><img id="foto72"><img id="foto73"><img id="foto74"><img id="foto75"><img id="foto76"><img id="foto77"><img id="foto78"><img id="foto79"><img id="foto80"><br>
+
+        <button onclick="mostra3()">Majors</button><br>
+        <p id="mostraMajors">Majors</p><br>
+        
+        <button onclick="mostra4()">Menors</button><br>
+        <p id="mostraMenors">Menors</p><br>
+
+        <button onclick="mostra5()">Parells</button><br>
+        <p id="mostraParells">Parells</p><br>
+
+        <button onclick="mostra6()">Senars</button><br>
+        <p id="mostraSenars">Senars</p><br>
+
+        
+
+        <script>
+
+            const llista=[]
+            const llista2=[]
+            let foto=""
+
+            let majors=[]
+            let menors=[]
+            let parells=[]
+            let senars=[]
+
+            function mostra(){
+                let n = "http://aula.gimnesia.net/fotos/" + document.getElementById("numero").value + ".jpg"
+                document.getElementById("imatge").src = n
+                
+            }
+
+            function mostra2(){
+                let i=0
+                //let llista=[]
+                let foto=""
+
+                while (i<80){
+                    llista[i] = Math.floor(Math.random() * 80) + 1 
+                    foto = llista[i]
+                    i++;
+        
+                    document.getElementById("foto" + i).src="http://aula.gimnesia.net/fotos/" + foto + ".jpg";
+                }
+
+             document.getElementById("demo4").innerHTML = llista;
+            }
+            
+            function mostra3(){
+                
+                for (i in llista){
+                    if (llista[i]>39){
+                        majors.push(llista[i])
+                        //document.getElementById("mostraMajors").src="http://aula.gimnesia.net/fotos/" + llista[i] + ".jpg";
+                        i++
+                    }
+                    document.getElementById("mostraMajors").innerHTML=majors;
+
+                    
+                }
+            }
+
+            function mostra4(){
+               
+                for (i in llista){
+                    if (llista[i]<40){
+                        menors.push(llista[i])
+                        i++
+                    }
+                    document.getElementById("mostraMenors").innerHTML=menors;
+                }
+            }
+
+            function mostra5(){
+               
+                for (i in llista){
+                    if (llista[i]%2==0){
+                        parells.push(llista[i])
+                        i++
+                    }
+                    document.getElementById("mostraParells").innerHTML=parells;
+                }
+            }
+
+            function mostra6(){
+               
+                for (i in llista){
+                    if (llista[i]%2!==0){
+                        senars.push(llista[i])
+                        i++
+                    }
+                    document.getElementById("mostraSenars").innerHTML=senars;
+                }
+            }
+
+        </script>
+    <body>
+</html>

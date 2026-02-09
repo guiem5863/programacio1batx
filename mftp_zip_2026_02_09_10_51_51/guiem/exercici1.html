@@ -1,0 +1,59 @@
+<html lang="ca">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>Exercicis Javascript</title>
+
+    </head>
+
+    <body>
+        <div style="color:w3-black;">
+            <p>PAGINA PRINCIPAL</p>
+        </div>
+        <div style="color:CadetBlue;">             
+            <a href="http://gimnesia.net/dev/2025/guiem/" class="w3-bar-item w3-button">Pagina Principal</a>
+        </div>
+        
+        <h1>Guiem Cerdà</h1>
+        <h2>1. Positiu o Negatiu.</h2>
+        <div class="box">
+            <input type="number" id="ex1">
+            <button onclick="ex1()">Comprovar</button>  
+            <p class="res" id="res1"></p>
+        </div>
+
+    </body>
+
+    <script>
+
+        function ex1() {   
+
+            let n = parseFloat(document.getElementById("ex1").value);
+
+            let resultat=""
+
+            if (n>=0) {resultat = "positiu"}
+
+            else {resultat="negatiu"}
+
+            document.getElementById("res1").innerText = resultat;
+            alert("Has escrit el número " + n)
+            console.log("Has escrit el número " + n);
+            if (n>0) {result = alert("El número " + n + " és positiu")
+            console.log("El número " + n + " és positiu");
+            }
+            if (n<0) {result = alert("El múmero " + n + " és negatiu")
+            console.log("El múmero " + n + " és negatiu");
+            }
+            if (n==0) {result = alert("El múmero és zero")
+            console.log("El múmero és zero");
+            }
+            if (isNaN(n)) {return alert("No hi ha cap numero")
+            console.log("No hi ha cap numero");
+            }
+        }
+
+    </script>
+</html>

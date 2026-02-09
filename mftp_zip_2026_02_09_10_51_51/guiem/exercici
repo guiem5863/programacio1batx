@@ -1,0 +1,184 @@
+```html
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercicis Javascript</title>
+<body>
+
+<h2>1. Positiu o Negatiu.</h2>
+<div class="box">
+    <input type="number" id="ex1">
+    <button onclick="ex1()">Comprovar</button>
+    <p class="res" id="res1"></p>
+</div>
+
+<!-- 2 -->
+<div class="box">
+    <h2>2. Parell o Senar</h2>
+    <input type="number" id="ex2">
+    <button onclick="ex2()">Comprovar</button>
+    <p class="res" id="res2"></p>
+</div>
+
+<!-- 3 -->
+<div class="box">
+    <h2>3. Més gran de dos números</h2>
+    <input type="number" id="ex3a" placeholder="Primer">
+    <input type="number" id="ex3b" placeholder="Segon">
+    <button onclick="ex3()">Comparar</button>
+    <p class="res" id="res3"></p>
+</div>
+
+<!-- 4 -->
+<div class="box">
+    <h2>4. Descompte</h2>
+    <input type="number" id="ex4" placeholder="Preu">
+    <button onclick="ex4()">Calcular</button>
+    <p class="res" id="res4"></p>
+</div>
+
+<!-- 5 -->
+<div class="box">
+    <h2>5. Edat per votar</h2>
+    <input type="number" id="ex5" placeholder="Edat">
+    <button onclick="ex5()">Comprovar</button>
+    <p class="res" id="res5"></p>
+</div>
+
+<!-- 6 -->
+<div class="box">
+    <h2>6. Calculadora bàsica</h2>
+    <input type="number" id="ex6a">
+    <select id="ex6op">
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
+    </select>
+    <input type="number" id="ex6b">
+    <button onclick="ex6()">Resultat</button>
+    <p class="res" id="res6"></p>
+</div>
+
+<!-- 7 -->
+<div class="box">
+    <h2>7. Any de traspàs</h2>
+    <input type="number" id="ex7">
+    <button onclick="ex7()">Comprovar</button>
+    <p class="res" id="res7"></p>
+</div>
+
+<!-- 8 -->
+<div class="box">
+    <h2>8. Nota acadèmica</h2>
+    <input type="number" id="ex8" placeholder="Nota (0-100)">
+    <button onclick="ex8()">Qualificació</button>
+    <p class="res" id="res8"></p>
+</div>
+
+<!-- 9 -->
+<div class="box">
+    <h2>9. Major de tres números</h2>
+    <input type="number" id="ex9a" placeholder="A">
+    <input type="number" id="ex9b" placeholder="B">
+    <input type="number" id="ex9c" placeholder="C">
+    <button onclick="ex9()">Comprovar</button>
+    <p class="res" id="res9"></p>
+</div>
+
+<!-- 10 -->
+<div class="box">
+    <h2>10. Impostos segons ingressos</h2>
+    <input type="number" id="ex10" placeholder="Ingressos">
+    <button onclick="ex10()">Calcular</button>
+    <p class="res" id="res10"></p>
+</div>
+</body>
+<script>
+    // 1
+    function ex1() {
+        let n = parseFloat(document.getElementById("ex1").value);
+        document.getElementById("res1").innerText = (n >= 0) ? "Positiu" : "Negatiu";
+    }
+    // 2
+    function ex2() {
+        let n = parseInt(document.getElementById("ex2").value);
+        document.getElementById("res2").innerText = (n % 2 === 0) ? "Parell" : "Senar";
+    }
+    // 3
+    function ex3() {
+        let a = parseFloat(document.getElementById("ex3a").value);
+        let b = parseFloat(document.getElementById("ex3b").value);
+        if (a > b) document.getElementById("res3").innerText = "El més gran és " + a;
+        else if (b > a) document.getElementById("res3").innerText = "El més gran és " + b;
+        else document.getElementById("res3").innerText = "Són iguals";
+    }
+    // 4
+    function ex4() {
+        let preu = parseFloat(document.getElementById("ex4").value);
+        let total = (preu > 100) ? preu * 0.9 : preu;
+        document.getElementById("res4").innerText = "Total: " + total.toFixed(2);
+    }
+    // 5
+    function ex5() {
+        let edat = parseInt(document.getElementById("ex5").value);
+        document.getElementById("res5").innerText = (edat >= 18) ? "Pots votar" : "Encara no pots votar";
+    }
+    // 6
+    function ex6() {
+        let a = parseFloat(document.getElementById("ex6a").value);
+        let b = parseFloat(document.getElementById("ex6b").value);
+        let op = document.getElementById("ex6op").value;
+        let r;
+        switch (op) {
+            case "+":
+                r = a + b;
+                break;
+            case "-":
+                r = a - b;
+                break;
+            case "*":
+                r = a * b;
+                break;
+            case "/":
+                r = b !== 0 ? a / b : "Error (divisió per 0)";
+        }
+        document.getElementById("res6").innerText = "Resultat: " + r;
+    }
+    // 7
+    function ex7() {
+        let any = parseInt(document.getElementById("ex7").value);
+        let msg = ((any % 4 === 0 && any % 100 !== 0) || any % 400 === 0) ? "Any de traspàs" : "No és de traspàs";
+        document.getElementById("res7").innerText = msg;
+    }
+    // 8
+    function ex8() {
+        let nota = parseInt(document.getElementById("ex8").value);
+        let r;
+        if (nota >= 90) r = "Excel·lent";
+        else if (nota >= 70) r = "Notable";
+        else if (nota >= 50) r = "Aprovat";
+        else r = "Suspès";
+        document.getElementById("res8").innerText = r;
+    }
+    // 9
+    function ex9() {
+        let a = parseFloat(document.getElementById("ex9a").value);
+        let b = parseFloat(document.getElementById("ex9b").value);
+        let c = parseFloat(document.getElementById("ex9c").value);
+        let r = Math.max(a, b, c);
+        document.getElementById("res9").innerText = "El major és " + r;
+    }
+    // 10
+    function ex10() {
+        let ing = parseFloat(document.getElementById("ex10").value);
+        let imp;
+        if (ing <= 1000) imp = ing * 0.05;
+        else if (ing <= 2000) imp = ing * 0.1;
+        else imp = ing * 0.2;
+        document.getElementById("res10").innerText = "Impost: " + imp.toFixed(2);
+    }
+</script>
+
+</html>
