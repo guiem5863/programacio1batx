@@ -38,6 +38,20 @@ def comprovaSudoku(taula):
             return False
     return True
 
+def contaNombres(t):
+    print("aqui contare el nombre de files i columnes")
+    
+    Numerofiles = len(t)
+    print("Numero files: ", Numerofiles)
+    Numerocolumnes = len(t[0])
+    print("Numero columnes: ", Numerocolumnes)
+
+    for i in range(len(t)):
+        print("fila", i, "té", len(t[i]), "columnes")
+        for j in range(len(t[i])):
+            print(t[i][j])
+    
+    
 
 sudoku =[   [9,6,3,1,7,4,2,5,8],
             [1,7,8,3,2,5,6,4,9],
@@ -50,6 +64,7 @@ sudoku =[   [9,6,3,1,7,4,2,5,8],
             [6,4,2,5,9,8,1,7,3]
             ]
 
-comprovaSudoku(sudoku)
+#comprovaSudoku(sudoku)
+contaNombres(sudoku)
 
 print("comprovant el sudoku")
