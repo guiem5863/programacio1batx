@@ -28,6 +28,7 @@ sudoku =[   [9,6,3,1,7,4,2,5,8],
             [3,1,7,2,4,6,9,8,5],
             [6,4,2,5,9,8,1,7,3]
             ]
+
 print("COMPROVANT COLUMNES")
 for i in range(9):
     for j in range(9):
@@ -65,7 +66,7 @@ for n in range(9):
                 l=(n%1)+1
 
             #print("fila", i, ": ", fila, "columna", j, ": ")
-            print(i+3*(y+l),j+3*(n%3))
+            #print(i+3*(y+l),j+3*(n%3))
 
 #i+3*IF(n>=3;(n%1)+1;0)+IF(n>=6;(n%1)+3;0)       
 # =D6 + 3*IF(C6>=3; MOD(C6;1)+1; 0) + IF(C6>=6; MOD(C6;1)+3; 0)     
@@ -82,10 +83,7 @@ def comprovaGrup(grup):
                     y=(n%1)+1
                 if(n>=6):
                     l=(n%1)+1
-
-                print(i+3*(y+l),j+3*(n%3))
-
-
+                #print(i+3*(y+l),j+3*(n%3))
 
 
 
