@@ -229,8 +229,19 @@ class SudokuController:
     def solve(self):
         self.backtracking()
 
-    
-    
+    def uns(self):
+        numero=1
+        for i in range(9):
+            for j in range(9):
+                self.model.grid[i][j].value = numero
+                #llista=[]
+                #llista.append(self.model.grid[j][i].value)
+                
+    def canvi(self):
+        numero=self.model.grid[0][0].value
+        for i in range(9):
+            for j in range(9):  
+                self.model.grid[i][j].value = numero      
     
     
     # BACKTRACKING
@@ -284,10 +295,12 @@ view = SudokuView()
 controller = SudokuController(model)
 
 buttons = [
-    Boto(10,560,120,50,"Carrega", controller.load),
-    Boto(140,560,120,50,"Comprova", controller.check),
-    Boto(270,560,120,50,"Resultat", controller.show_result),
-    Boto(400,560,120,50,"Resol", controller.solve)
+    Boto(10,550,120,40,"Carrega", controller.load),
+    Boto(140,550,120,40,"Comprova", controller.check),
+    Boto(270,550,120,40,"Resultat", controller.show_result),
+    Boto(400,550,120,40,"Resol", controller.solve),
+    Boto(10,600,120,40,"UN", controller.uns),
+    Boto(140,600,120,40,"Canvia", controller.canvi)
 ]
 
 running = True
