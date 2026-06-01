@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test de Formulació Orgànica</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+    }
+    .question {
+        background: white;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    button {
+        display: block;
+        margin: 20px auto;
+        padding: 12px 25px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    }
+    #resultat {
+        text-align: center;
+        font-size: 1.4em;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Test de Formulació Orgànica (1r Batxillerat)</h1>
+
+<form id="quiz">
+
+<div class="question">
+<p>1. Quin és el nom del compost CH₄?</p>
+<label><input type="radio" name="q1" value="a"> Età</label><br>
+<label><input type="radio" name="q1" value="b"> Metà</label><br>
+<label><input type="radio" name="q1" value="c"> Propà</label>
+</div>
+
+<div class="question">
+<p>2. Quina és la fórmula molecular de l'età?</p>
+<label><input type="radio" name="q2" value="a"> C₂H₆</label><br>
+<label><input type="radio" name="q2" value="b"> C₂H₄</label><br>
+<label><input type="radio" name="q2" value="c"> C₃H₈</label>
+</div>
+
+<div class="question">
+<p>3. Quin grup funcional tenen els alcohols?</p>
+<label><input type="radio" name="q3" value="a"> -COOH</label><br>
+<label><input type="radio" name="q3" value="b"> -OH</label><br>
+<label><input type="radio" name="q3" value="c"> -CHO</label>
+</div>
+
+<div class="question">
+<p>4. Com s'anomena CH₃-CH₂-OH?</p>
+<label><input type="radio" name="q4" value="a"> Metanol</label><br>
+<label><input type="radio" name="q4" value="b"> Etanol</label><br>
+<label><input type="radio" name="q4" value="c"> Propanol</label>
+</div>
+
+<div class="question">
+<p>5. Quin és l'alcà amb 3 carbonis?</p>
+<label><input type="radio" name="q5" value="a"> Propà</label><br>
+<label><input type="radio" name="q5" value="b"> Butà</label><br>
+<label><input type="radio" name="q5" value="c"> Pentà</label>
+</div>
+
+<div class="question">
+<p>6. Els alquens contenen...</p>
+<label><input type="radio" name="q6" value="a"> Un triple enllaç</label><br>
+<label><input type="radio" name="q6" value="b"> Un doble enllaç</label><br>
+<label><input type="radio" name="q6" value="c"> Només enllaços simples</label>
+</div>
+
+<div class="question">
+<p>7. Quina és la fórmula molecular de l'etè?</p>
+<label><input type="radio" name="q7" value="a"> C₂H₂</label><br>
+<label><input type="radio" name="q7" value="b"> C₂H₄</label><br>
+<label><input type="radio" name="q7" value="c"> C₂H₆</label>
+</div>
+
+<div class="question">
+<p>8. Quin és el prefix per a 5 carbonis?</p>
+<label><input type="radio" name="q8" value="a"> But-</label><br>
+<label><input type="radio" name="q8" value="b"> Pent-</label><br>
+<label><input type="radio" name="q8" value="c"> Hex-</label>
+</div>
+
+<div class="question">
+<p>9. Quin grup funcional tenen els àcids carboxílics?</p>
+<label><input type="radio" name="q9" value="a"> -COOH</label><br>
+<label><input type="radio" name="q9" value="b"> -OH</label><br>
+<label><input type="radio" name="q9" value="c"> -NH₂</label>
+</div>
+
+<div class="question">
+<p>10. Com s'anomena CH₃-COOH?</p>
+<label><input type="radio" name="q10" value="a"> Àcid metanoic</label><br>
+<label><input type="radio" name="q10" value="b"> Àcid etanoic</label><br>
+<label><input type="radio" name="q10" value="c"> Metanol</label>
+</div>
+
+<div class="question">
+<p>11. Quin és el nom de C₄H₁₀?</p>
+<label><input type="radio" name="q11" value="a"> Butà</label><br>
+<label><input type="radio" name="q11" value="b"> Pentà</label><br>
+<label><input type="radio" name="q11" value="c"> Propà</label>
+</div>
+
+<div class="question">
+<p>12. Els alquins tenen...</p>
+<label><input type="radio" name="q12" value="a"> Un doble enllaç</label><br>
+<label><input type="radio" name="q12" value="b"> Un triple enllaç</label><br>
+<label><input type="radio" name="q12" value="c"> Només enllaços simples</label>
+</div>
+
+<div class="question">
+<p>13. Quina és la fórmula de l'etí?</p>
+<label><input type="radio" name="q13" value="a"> CH₃-</label><br>
+<label><input type="radio" name="q13" value="b"> CH₃-CH₂-</label><br>
+<label><input type="radio" name="q13" value="c"> CH₃-CH₂-CH₂-</label>
+</div>
+
+<div class="question">
+<p>14. Quin és el nom correcte de CH₃-CH₂-CH₃?</p>
+<label><input type="radio" name="q14" value="a"> Età</label><br>
+<label><input type="radio" name="q14" value="b"> Propà</label><br>
+<label><input type="radio" name="q14" value="c"> Butà</label>
+</div>
+
+<div class="question">
+<p>15. Quin és el sufix dels alcohols?</p>
+<label><input type="radio" name="q15" value="a"> -ol</label><br>
+<label><input type="radio" name="q15" value="b"> -à</label><br>
+<label><input type="radio" name="q15" value="c"> -oic</label>
+</div>
+
+<button type="button" onclick="corregir()">Corregir Test</button>
+
+</form>
+
+<div id="resultat"></div>
+
+<script>
+function corregir() {
+    const respostes = {
+        q1:"b", q2:"a", q3:"b", q4:"b", q5:"a",
+        q6:"b", q7:"b", q8:"b", q9:"a", q10:"b",
+        q11:"a", q12:"b", q13:"b", q14:"b", q15:"a"
+    };
+
+    let nota = 0;
+
+    for (let pregunta in respostes) {
+        const resposta = document.querySelector(`input[name="${pregunta}"]:checked`);
+        if (resposta && resposta.value === respostes[pregunta]) {
+            nota++;
+        }
+    }
+
+    document.getElementById("resultat").innerHTML =
+        `Has encertat <strong>${nota}</strong> de 15 preguntes.<br>
+         Nota: <strong>${(nota/15*10).toFixed(1)}</strong> / 10`;
+}
+</script>
+
+</body>
+</html>
