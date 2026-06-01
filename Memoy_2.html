@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Memory Game MVC</title>
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+background: #1e1e2f;
+color: white;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+}
+
+h1 {
+margin-bottom: 20px;
+text-align: center;
+}
+
+.controls {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+border-radius: 8px;
+background: #4caf50;
+color: white;
+cursor: pointer;
+font-size: 16px;
+transition: 0.2s;
+}
+
+button:hover {
+background: #43a047;
+}
+
+.stats {
+margin-bottom: 20px;
+text-align: center;
+}
+
+.game-board {
+width: 100%;
+max-width: 1000px;
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 12px;
+}
+
+.card {
+position: relative;
+width: 100%;
+aspect-ratio: 1 / 1;
+perspective: 1000px;
+cursor: pointer;
+}
+
+.card-inner {
+position: absolute;
+width: 100%;
+height: 100%;
+transition: transform 0.5s;
+transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+border-radius: 12px;
+backface-visibility: hidden;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.card-front {
+background: #2d2d44;
+font-size: 2rem;
+}
+
+.card-back {
+transform: rotateY(180deg);
+background: white;
+}
+
+.card-back img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.matched {
+opacity: 0.6;
+pointer-events: none;
+}
+
+@media (min-width: 700px) {
+.game-board {
+grid-template-columns: repeat(5, 1fr);
+}
+}
+
+@media (min-width: 1000px) {
+.game-board {
+grid-template-columns: repeat(6, 1fr);
+}
+}
+
+@media (max-width: 500px) {
+.game-board {
+grid-template-columns: repeat(3, 1fr);
+}
+}
+</style>
+</head>
+<body>
+
+<h1>🎮 Memory Game MVC</h1>
+
+<div class="controls">
+<button id="restartBtn">Nova partida</button>
+</div>
+
+<div class="stats">
+<p>Moviments: <span id="moves">0</span></p>
+<p>Parelles trobades: <span id="matches">0</span></p>
+<p>Jugador1: <span id="jug1">0</span></p>
+<p>Jugador2: <span id="jug2">0</span></p>
+
+</div>
+
+<div class="game-board" id="gameBoard"></div>
+
+<script>
+// =========================
+// MODEL
+// =========================
+
+class MemoryModel {
+    constructor() {
+        this.baseUrl = 'http://aula.gimnesia.net/fotos/';
+        this.totalImages = 80;
+        this.totalPairs = 12;
+
+        this.cards = [];
+        this.flippedCards = [];
+        this.matches = 0;
+        this.moves = 0;
+        this.lockBoard = false;
+        alert(this.punts[0]);
+        this.punts = [0,0];
+        this.torn = 0;
+        this.jugadors = 0;
+}
+
+generateRandomImages() {
+const numbers = [];
+
+while (numbers.length < this.totalPairs) {
+const random = Math.floor(Math.random() * this.totalImages) + 1;
+
+if (!numbers.includes(random)) {
+numbers.push(random);
+}
+}
+
+return numbers;
+}
+
+createCards() {
+const randomImages = this.generateRandomImages();
+
+const duplicated = [...randomImages, ...randomImages];
+
+this.cards = duplicated
+.map((number, index) => ({
+id: index,
+imageId: number,
+image: `${this.baseUrl}${number}.jpg`,
+flipped: false,
+matched: false
+}))
+.sort(() => Math.random() - 0.5);
+}
+
+reset() {
+    this.flippedCards = [];
+    this.matches = 0;
+    this.moves = 0;
+    this.lockBoard = false;
+    this.createCards();
+    this.punts = [0,0];
+    this.torn = 0;
+}
+}
+
+// =========================
+// VIEW
+// =========================
+
+class MemoryView {
+    constructor() {
+        this.board = document.getElementById('gameBoard');
+        this.movesElement = document.getElementById('moves');
+        this.matchesElement = document.getElementById('matches');
+        this.restartBtn = document.getElementById('restartBtn');
+        this.resultat1 = document.getElementById('jug1');
+        this.resultat2 = document.getElementById('jug2');
+}
+
+renderBoard(cards) {
+this.board.innerHTML = '';
+
+cards.forEach(card => {
+const cardElement = document.createElement('div');
+
+cardElement.classList.add('card');
+
+if (card.flipped || card.matched) {
+cardElement.classList.add('flipped');
+}
+
+if (card.matched) {
+cardElement.classList.add('matched');
+}
+
+cardElement.dataset.id = card.id;
+
+cardElement.innerHTML = `
+<div class="card-inner">
+<div class="card-front">❓</div>
+<div class="card-back">
+<img src="${card.image}" alt="Memory image">
+</div>
+</div>
+`;
+
+this.board.appendChild(cardElement);
+});
+}
+
+updateStats(moves, matches) {
+this.movesElement.textContent = moves;
+this.matchesElement.textContent = matches;
+}
+
+bindCardClick(handler) {
+this.board.addEventListener('click', event => {
+const card = event.target.closest('.card');
+
+if (!card) return;
+
+handler(parseInt(card.dataset.id));
+});
+}
+
+bindRestart(handler) {
+this.restartBtn.addEventListener('click', handler);
+}
+
+showWinMessage(moves) {
+setTimeout(() => {
+alert(`🎉 Has guanyat en ${moves} moviments!`);
+}, 300);
+}
+}
+
+// =========================
+// CONTROLLER
+// =========================
+
+class MemoryController {
+constructor(model, view) {
+this.model = model;
+this.view = view;
+
+this.view.bindCardClick(this.handleCardClick.bind(this));
+this.view.bindRestart(this.restartGame.bind(this));
+
+this.startGame();
+}
+
+startGame() {
+this.model.reset();
+this.render();
+}
+
+render() {
+this.view.renderBoard(this.model.cards);
+this.view.updateStats(this.model.moves, this.model.matches);
+}
+
+handleCardClick(cardId) {
+if (this.model.lockBoard) return;
+
+const card = this.model.cards.find(c => c.id === cardId);
+
+if (!card || card.flipped || card.matched) {
+return;
+}
+
+card.flipped = true;
+this.model.flippedCards.push(card);
+
+this.render();
+
+if (this.model.flippedCards.length === 2) {
+this.checkMatch();
+}
+}
+
+checkMatch() {
+    this.model.lockBoard = true;
+    this.model.moves++;
+
+    const [first, second] = this.model.flippedCards;
+
+    if (first.imageId === second.imageId) {
+        this.punts[this.model.torn] = this.model.punts[this.torn] + 10
+        alert("Els punts de " + this.model.jugadors[0] + " són " + this.model.punts[0] + "\n Els punts de "  + this.model.jugadors[1] + " són " + this.model.punts[1]);
+
+        first.matched = true;
+        second.matched = true;
+
+        this.model.matches++;
+        this.model.flippedCards = [];
+        this.model.lockBoard = false;
+
+        this.render();
+
+        if (this.model.matches === this.model.totalPairs) {
+            this.view.showWinMessage(this.model.moves);
+        }
+
+    } else {
+        this.model.tort = this.model.tort + 1;
+        if (this.model.tort == 2) {this.model.tort = 0;}
+
+        this.render();
+
+        setTimeout(() => {
+        first.flipped = false;
+        second.flipped = false;
+
+        this.model.flippedCards = [];
+        this.model.lockBoard = false;
+
+        this.render();
+        }, 1000);
+        }
+}
+
+restartGame() {
+    this.startGame();
+}
+}
+
+// =========================
+// INIT APP
+// =========================
+
+const model = new MemoryModel();
+const view = new MemoryView();
+const controller = new MemoryController(model, view);
+</script>
+
+</body>
+</html>
